@@ -70,8 +70,8 @@ class CodeMirrorAdapter extends IEditorAdapter<CodeMirror.Editor> {
     const signatureCharacters = this.connection.getLanguageSignatureCharacters();
 
     const code = this.editor.getDoc().getValue();
-    const lines = code.split('\n');
-    const line = lines[location.line];
+    const lines = this.editor.getDoc().lineCount();
+    const line = this.editor.getDoc().getLine(location.line);
     const typedCharacter = line[location.ch - 1];
 
     if (typeof typedCharacter === 'undefined') {
